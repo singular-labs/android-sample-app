@@ -6,49 +6,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.Spinner;
 
-import com.android.billingclient.api.BillingClient;
-import com.android.billingclient.api.BillingClientStateListener;
-import com.android.billingclient.api.BillingFlowParams;
-import com.android.billingclient.api.BillingResult;
-import com.android.billingclient.api.ConsumeParams;
-import com.android.billingclient.api.ConsumeResponseListener;
 import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.PurchasesUpdatedListener;
-import com.android.billingclient.api.SkuDetails;
-import com.android.billingclient.api.SkuDetailsParams;
-import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.singular.sdk.Singular;
 
 import net.singular.singularsampleapp.R;
+import net.singular.singularsampleapp.Utils;
 
-import org.jetbrains.annotations.Nullable;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.android.billingclient.api.BillingClient.BillingResponseCode.OK;
-
-public class RevenueFragment extends Fragment implements BillingClientStateListener, PurchasesUpdatedListener {
-
-    private BillingClient billingClient;
-    private SkuDetails product;
+public class RevenueFragment extends Fragment {
 
     private EditText eventNameText;
-    private EditText currencyCodeText;
+    private Spinner currencyCodeText;
     private EditText priceText;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_revenue, container, false);
-
-        if(billingClient == null){
-            billingClient = BillingClient.newBuilder(getContext()).setListener(this).enablePendingPurchases().build();
-            billingClient.startConnection(this);
-        }
 
         eventNameText = view.findViewById(R.id.revenue_event_name);
         currencyCodeText = view.findViewById(R.id.revenue_event_currency);
@@ -57,110 +34,78 @@ public class RevenueFragment extends Fragment implements BillingClientStateListe
         view.findViewById(R.id.report_revenue).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String eventName = extractAndValidateEventName();
-
-                if (eventName == null) {
-                    return;
-                }
-
-                String currency = currencyCodeText.getText().toString().trim();
-
-                if (currency.equals("")) {
-                    Toast.makeText(getContext(), "Currency Code can't be empty", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                String price = priceText.getText().toString().trim();
-
-                if (price.equals("")) {
-                    Toast.makeText(getContext(), "Price can't be empty", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                Singular.customRevenue(eventName, currency, Double.parseDouble(price));
+                sendRevenue(true);
             }
         });
 
         view.findViewById(R.id.report_revenue_with_validation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String eventName = extractAndValidateEventName();
-
-                if (eventName == null) {
-                    return;
-                }
-
-                if (product == null) {
-                    Toast.makeText(getContext(), "Product is not ready to be purchased", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                // This will trigger the onPurchasesUpdated method
-                BillingFlowParams billingFlowParams = BillingFlowParams
-                        .newBuilder()
-                        .setSkuDetails(product)
-                        .build();
-                billingClient.launchBillingFlow(getActivity(), billingFlowParams);
+                sendRevenue(false);
             }
         });
 
         return view;
     }
 
-    @Override
-    public void onPurchasesUpdated(BillingResult billingResult, @Nullable List<Purchase> purchases) {
-        if (billingResult.getResponseCode() == OK) {
-            for (Purchase item : billingClient.queryPurchases(BillingClient.SkuType.INAPP).getPurchasesList()) {
-
-                Singular.customRevenue("Test Purchase", product.getPriceCurrencyCode(), 4.0, item);
-
-                // This code is here only to consume the product thus allowing us to purchase the same product again
-                ConsumeParams params = ConsumeParams.newBuilder().setPurchaseToken(item.getPurchaseToken()).build();
-                billingClient.consumeAsync(params, new ConsumeResponseListener() {
-                    @Override
-                    public void onConsumeResponse(BillingResult billingResult, String purchaseToken) {
-
-                    }
-                });
-            }
-        }
-    }
-
-    @Override
-    public void onBillingSetupFinished(BillingResult billingResult) {
-        if (billingResult.getResponseCode() == OK) {
-            List<String> skuList = new ArrayList<>();
-            skuList.add("test.product");
-
-            SkuDetailsParams params = SkuDetailsParams
-                    .newBuilder()
-                    .setSkusList(skuList)
-                    .setType(BillingClient.SkuType.INAPP)
-                    .build();
-
-            billingClient.querySkuDetailsAsync(params, new SkuDetailsResponseListener() {
-                @Override
-                public void onSkuDetailsResponse(BillingResult billingResult, List<SkuDetails> skuDetailsList) {
-                    // The product is now ready to be purchased
-                    product = skuDetailsList.get(0);
-                }
-            });
-        }
-    }
-
-    @Override
-    public void onBillingServiceDisconnected() {
-
-    }
-
-    private String extractAndValidateEventName() {
+    private void sendRevenue(boolean isSimpleRevenue) {
         String eventName = eventNameText.getText().toString().trim();
 
-        if (eventName.equals("")) {
-            Toast.makeText(getContext(), "Event name can't be empty", Toast.LENGTH_SHORT).show();
+        if (Utils.isNullOrEmpty(eventName)) {
+            Utils.showToast(getContext(), "Please enter a valid event name");
+            return;
+        }
+
+        String currency = currencyCodeText.getSelectedItem().toString().trim();
+
+        if (Utils.isNullOrEmpty(currency)) {
+            Utils.showToast(getContext(), "Please enter a valid currency");
+            return;
+        }
+
+        String price = priceText.getText().toString().trim();
+
+        if (Utils.isNullOrEmpty(price) || Double.parseDouble(price) == 0) {
+            Utils.showToast(getContext(), "Revenue can't be zero or empty");
+            return;
+        }
+
+        if (isSimpleRevenue) {
+
+            // Reporting a simple revenue event to Singular
+            Singular.customRevenue(eventName, currency, Double.parseDouble(price));
+
+            Utils.showToast(getContext(), "Revenue event sent");
+        } else {
+            Purchase purchase = buildFakePurchase();
+
+            if (purchase == null) {
+                Utils.showToast(getContext(), "Failed to create a fake purchase");
+                return;
+            }
+
+            // Instead of sending a real purchase we create a fake one for testing.
+            // In your production environment, the Purchase object should be received from the Google Billing API.
+            Singular.customRevenue(eventName, currency, Double.parseDouble(price), purchase);
+
+            Utils.showToast(getContext(), "IAP sent");
+        }
+    }
+
+    private Purchase buildFakePurchase() {
+        Purchase fakePurchase;
+
+        try {
+            JSONObject json = new JSONObject();
+            json.put("productId", "fake_product_id");
+
+            fakePurchase = new Purchase(json.toString(), "test_signature");
+        } catch (JSONException e) {
+            e.printStackTrace();
+
             return null;
         }
 
-        return eventName;
+        return fakePurchase;
     }
 }

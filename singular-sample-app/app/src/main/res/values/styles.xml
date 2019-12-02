@@ -8,6 +8,8 @@
         <item name="colorAccent">#3A92E5</item>
         <item name="android:buttonStyle">@style/DefaultButtonStyle</item>
         <item name="editTextStyle">@style/DefaultEditTextStyle</item>
+        <item name="android:spinnerStyle">@style/DefaultSpinnerStyle</item>
+        <item name="android:spinnerItemStyle">@style/DefaultSpinnerItemStyle</item>
     </style>
 
     <style name="DefaultButtonStyle" parent="Widget.AppCompat.Button">
@@ -17,8 +19,13 @@
     </style>
 
     <style name="DefaultEditTextStyle" parent="Widget.AppCompat.EditText">
-        <item name="android:textSize">14dp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:layout_marginLeft">55dp</item>
+        <item name="android:paddingLeft">8dp</item>
+    </style>
+
+    <style name="DefaultSpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="TabItemTextStyle" parent="TextAppearance.Design.Tab">
@@ -26,6 +33,10 @@
         <item name="textAllCaps">false</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="DefaultSpinnerStyle" parent="@style/Base.Widget.AppCompat.Spinner.Underlined">
+        <item name="android:paddingLeft">0dp</item>
     </style>
 
     <style name="DeeplinkBaseTextStyle">

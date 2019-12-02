@@ -12,21 +12,26 @@ import net.singular.singularsampleapp.MainActivity;
 import net.singular.singularsampleapp.R;
 
 public class DeeplinkFragment extends Fragment {
+
+    private View fragment;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_deeplink, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        if (fragment == null) {
+            fragment = inflater.inflate(R.layout.fragment_deeplink, container, false);
+        }
 
         Bundle deeplinkData = ((MainActivity) getActivity()).getDeeplinkData();
 
         if (deeplinkData == null) {
-            return view;
+            return fragment;
         }
 
-        ((TextView) view.findViewById(R.id.resolved_deeplink)).setText(deeplinkData.getString(Constants.DEEPLINK_KEY));
-        ((TextView) view.findViewById(R.id.resolved_passthrough)).setText(deeplinkData.getString(Constants.PASSTHROUGH_KEY));
-        ((TextView) view.findViewById(R.id.is_deferred)).setText(String.valueOf(deeplinkData.getBoolean(Constants.IS_DEFERRED_KEY)));
+        ((TextView) fragment.findViewById(R.id.resolved_deeplink)).setText(deeplinkData.getString(Constants.DEEPLINK_KEY));
+        ((TextView) fragment.findViewById(R.id.resolved_passthrough)).setText(deeplinkData.getString(Constants.PASSTHROUGH_KEY));
+        ((TextView) fragment.findViewById(R.id.is_deferred)).setText(String.valueOf(deeplinkData.getBoolean(Constants.IS_DEFERRED_KEY)));
 
-        return view;
+        return fragment;
     }
 }

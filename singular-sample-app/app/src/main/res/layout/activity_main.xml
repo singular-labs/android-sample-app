@@ -4,30 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/singularWhite"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:background="@color/singularWhite">
+    tools:context=".MainActivity">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
         android:padding="15dp"
-        android:src="@drawable/singular_logo"
-        android:layout_marginHorizontal="40dp"/>
+        android:src="@drawable/singular_logo" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter API Key"
-        android:text="" />
         android:layout_weight="30" />
 
+    <!-- Separator -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter API Secret"
-        android:text="" />
         android:layout_height="1dp"
         android:background="@android:color/darker_gray" />
 

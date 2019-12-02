@@ -11,7 +11,7 @@
         style="@style/DeeplinkTitleStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Deeplink:" />
+        android:text="@string/deeplink" />
 
     <TextView
         android:id="@+id/resolved_deeplink"
@@ -23,7 +23,7 @@
         style="@style/DeeplinkTitleStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Passthrough:" />
+        android:text="@string/passthrough" />
 
     <TextView
         android:id="@+id/resolved_passthrough"
@@ -35,7 +35,7 @@
         style="@style/DeeplinkTitleStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Is Deferred:" />
+        android:text="@string/is_deferred" />
 
     <TextView
         android:id="@+id/is_deferred"

@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragments.IdentityFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
+        android:id="@+id/custom_user_id"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/horizontalSpacing"
+        android:hint="@string/custom_user_id" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/set_custom_user_id"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="@dimen/buttonHeight"
+        android:text="@string/set_custom_user_id" />
+
+    <Button
+        android:id="@+id/unset_custom_user_id"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/buttonHeight"
+        android:text="@string/unset_custom_user_id" />
+
+</LinearLayout>

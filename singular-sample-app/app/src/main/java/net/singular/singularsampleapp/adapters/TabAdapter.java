@@ -13,8 +13,8 @@ public class TabAdapter extends FragmentPagerAdapter {
 
     private int tabsCount;
 
-    public TabAdapter(FragmentManager fm, int tabsCount) {
-        super(fm);
+    public TabAdapter(FragmentManager fragmentManager, int tabsCount) {
+        super(fragmentManager);
         this.tabsCount = tabsCount;
     }
 

@@ -11,21 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/horizontalSpacing"
-        android:hint="Event Name" />
+        android:hint="@string/event_name" />
 
-    <EditText
+    <Spinner
         android:id="@+id/revenue_event_currency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/horizontalSpacing"
-        android:hint="Currency Code" />
+        android:entries="@array/currency_codes" />
 
     <EditText
         android:id="@+id/revenue_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/horizontalSpacing"
-        android:hint="Revenue"
+        android:hint="@string/revenue"
         android:inputType="numberDecimal" />
 
     <Button
@@ -33,13 +33,13 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/buttonHeight"
         android:layout_gravity="center"
-        android:text="Report Revenue" />
+        android:text="@string/revenue_event" />
 
     <Button
         android:id="@+id/report_revenue_with_validation"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/buttonHeight"
         android:layout_gravity="center"
-        android:text="Report Purchase with Validation" />
+        android:text="@string/report_purchase_with_validation" />
 
 </LinearLayout>

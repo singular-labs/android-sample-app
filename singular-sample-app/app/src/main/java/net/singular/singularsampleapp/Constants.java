@@ -4,7 +4,7 @@ public interface Constants {
     String API_KEY = "<ENTER API KEY>";
     String SECRET = "<ENTER SECRET>";
 
-    String DEEPLINK_KEY = "deeplink";
+    String DEEPLINK_KEY = "deeplink_blue";
     String PASSTHROUGH_KEY = "passthrough";
     String IS_DEFERRED_KEY = "isDeferred";
 }
