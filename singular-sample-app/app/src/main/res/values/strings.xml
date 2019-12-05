@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name" translatable="false">Singular Sample App</string>
+    <string name="app_was_not_open_with_a_link">App did not open with a deep link</string>
+    <string name="custom_events">Custom Events</string>
+    <string name="revenue">Revenue</string>
+    <string name="identity">Identity</string>
+    <string name="deep_links">Deep Links</string>
+    <string name="custom_event">Custom Event</string>
+    <string name="custom_event_with_json">Custom Event with JSON</string>
+    <string name="custom_event_with_attributes">Custom Event with Attributes</string>
+    <string name="revenue_event">Revenue Event</string>
+    <string name="currency_code">Currency Code</string>
+    <string name="event_name">Event Name</string>
+    <string name="custom_user_id">Custom User Id</string>
+    <string name="set_custom_user_id">Set Custom User Id</string>
+    <string name="unset_custom_user_id">Unset Custom User Id</string>
+    <string name="deeplink">Deeplink</string>
+    <string name="passthrough">Passthrough</string>
+    <string name="is_deferred">Is Deferred</string>
+    <string name="report_purchase_with_receipt">Report Purchase with Receipt</string>
+
+    <string-array name="currency_codes">
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>ILS</item>
+        <item>INR</item>
+        <item>JPY</item>
+        <item>KRW</item>
+        <item>USD</item>
+    </string-array>
+</resources>

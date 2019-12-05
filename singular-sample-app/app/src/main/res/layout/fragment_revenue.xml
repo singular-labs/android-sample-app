@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.RevenueFragment">
+
+    <EditText
+        android:id="@+id/revenue_event_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/horizontalSpacing"
+        android:hint="@string/event_name" />
+
+    <Spinner
+        android:id="@+id/revenue_event_currency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/horizontalSpacing"
+        android:entries="@array/currency_codes" />
+
+    <EditText
+        android:id="@+id/revenue_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/horizontalSpacing"
+        android:hint="@string/revenue"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/report_revenue"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_gravity="center"
+        android:text="@string/revenue_event" />
+
+    <Button
+        android:id="@+id/report_revenue_with_validation"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_gravity="center"
+        android:text="@string/report_purchase_with_receipt" />
+
+</LinearLayout>
