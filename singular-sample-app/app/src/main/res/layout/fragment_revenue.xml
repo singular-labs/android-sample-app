@@ -40,6 +40,6 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/buttonHeight"
         android:layout_gravity="center"
-        android:text="@string/report_purchase_with_validation" />
+        android:text="@string/report_purchase_with_receipt" />
 
 </LinearLayout>

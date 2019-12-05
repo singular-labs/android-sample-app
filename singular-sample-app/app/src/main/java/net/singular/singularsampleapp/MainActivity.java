@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 deeplinkData.putString(Constants.PASSTHROUGH_KEY, singularLinkParams.getPassthrough());
                 deeplinkData.putBoolean(Constants.IS_DEFERRED_KEY, singularLinkParams.isDeferred());
 
-                // When the is opened using a deeplink_blue, we will open the deeplink_blue tab
+                // When the is opened using a deeplink, we will open the deeplink_blue tab
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Bundle getDeeplinkData() {
 
-        // Clearing the deeplink_blue data so it won't be used twice
+        // Clearing the deeplink data so it won't be used twice
         Bundle bundle = deeplinkData;
         deeplinkData = null;
 

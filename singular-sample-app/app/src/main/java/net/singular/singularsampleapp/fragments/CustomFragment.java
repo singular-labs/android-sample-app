@@ -77,7 +77,7 @@ public class CustomFragment extends Fragment {
                 }
 
                 // Reporting a simple event with your custom attributes to pass with the event
-                // The total amount of args needs to be even, we save them as key-value pairs
+                // The total amount of args needs to be even, we report them as key-value pairs
                 Singular.event(eventName, "first_key", "first_value", "second_key", "second_value");
 
                 Utils.showToast(getContext(), "Event with args sent");

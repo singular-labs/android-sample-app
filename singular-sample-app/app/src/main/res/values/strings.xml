@@ -17,7 +17,7 @@
     <string name="deeplink">Deeplink</string>
     <string name="passthrough">Passthrough</string>
     <string name="is_deferred">Is Deferred</string>
-    <string name="report_purchase_with_validation">Report Purchase with Validation</string>
+    <string name="report_purchase_with_receipt">Report Purchase with Receipt</string>
 
     <string-array name="currency_codes">
         <item>EUR</item>

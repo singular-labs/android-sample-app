@@ -9,24 +9,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--  Handle deeplinks using the MainActivity, you can also handle on a separate activity  -->
         <activity android:name=".MainActivity">
             <intent-filter>
-                <data android:scheme="singular" />
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.VIEW" />
 
+                <!--  These tags will enable this activity to be opened with a Singular Link using the "singular://" scheme  -->
+                <data android:scheme="singular" />
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
     </application>
 
+    <!--  This permission is needed to use internet connectivity, your app probably already has this  -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="com.android.vending.BILLING" />
 
+    <!--  This permission is needed to check if there's an active internet connection  -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!--  This permission is needed for us to retrieve google play referrer data  -->
     <uses-permission android:name="BIND_GET_INSTALL_REFERRER_SERVICE" />
 
 </manifest>
