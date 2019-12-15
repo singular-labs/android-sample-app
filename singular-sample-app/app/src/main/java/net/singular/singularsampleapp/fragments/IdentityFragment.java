@@ -33,7 +33,7 @@ public class IdentityFragment extends Fragment {
                 }
 
                 // Once set, the Custom User Id will persist between runs until `Singular.unsetCustomUserId()` is called.
-                // This can also be called before SDK init if you want the first session to include the Custom User Id.
+                // You can also use SingularConfig.withCustomUserId() to include it in the first session.
                 Singular.setCustomUserId(customUserId);
 
                 Utils.showToast(getContext(), String.format("Custom User id set to: %s", customUserId));
