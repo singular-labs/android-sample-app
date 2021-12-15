@@ -8,14 +8,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
 
         <!--  Handle deeplinks using the MainActivity, you can also handle on a separate activity  -->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-
+            </intent-filter>
+            <intent-filter>
                 <!--  These tags will enable this activity to be opened with a Singular Link using the "singular://" scheme  -->
                 <data android:scheme="singular" />
                 <action android:name="android.intent.action.VIEW" />
