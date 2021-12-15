@@ -1,9 +1,11 @@
 package net.singular.singularsampleapp;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 import com.singular.sdk.Singular;
 import com.singular.sdk.SingularConfig;
 import com.singular.sdk.SingularLinkHandler;
