@@ -1,6 +1,8 @@
 package net.singular.singularsampleapp;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -11,6 +13,8 @@ import com.singular.sdk.SingularConfig;
 import com.singular.sdk.SingularLinkHandler;
 import com.singular.sdk.SingularLinkParams;
 import net.singular.singularsampleapp.adapters.TabAdapter;
+
+import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Singular.init(this, config);
+        Log.d("Singular: ", "Singular Initialized");
+
     }
 
     private TabLayout.OnTabSelectedListener tabSelectedListener = new TabLayout.OnTabSelectedListener() {
