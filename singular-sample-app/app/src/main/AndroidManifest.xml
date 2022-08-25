@@ -12,7 +12,7 @@
         >
 
         <!--  Handle deeplinks using the MainActivity, you can also handle on a separate activity  -->
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -35,5 +35,11 @@
 
     <!--  This permission is needed for us to retrieve google play referrer data  -->
     <uses-permission android:name="BIND_GET_INSTALL_REFERRER_SERVICE" />
+
+    <!--  This permission is needed for us to validate install fraud  -->
+    <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
+
+    <!-- If your app build is targeting Android 12/API level 31 or higher, add permissions to access the Google Advertising ID -->
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
 </manifest>
