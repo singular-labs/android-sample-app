@@ -59,7 +59,7 @@ public class CustomFragment extends Fragment {
                     json.put("second_key", "second_value");
 
                     // Reporting a simple event with json as your custom attributes to pass with the event
-                    Singular.event(eventName, json);
+                    Singular.eventJSON(eventName, json);
 
                     Utils.showToast(getContext(), "Event with JSON sent");
                 } catch (JSONException e) {
